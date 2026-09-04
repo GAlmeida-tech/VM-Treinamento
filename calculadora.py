@@ -34,7 +34,7 @@ elif opcao == 4:
         resultado = num1 / num2
         print("O resultado da divisão é:", resultado)
 
-elif opcao > 5:
+elif opcao > 5 or opcao < 1:
     print("Opção inválida. Por favor, escolha uma opção válida.")
 
-print("testando Git Desktop")
+print(" Apenas testando Git Desktop")
