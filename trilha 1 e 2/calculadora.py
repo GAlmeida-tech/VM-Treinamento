@@ -1,9 +1,9 @@
 print("Calculadora Viana e Moura")
 
-print("Digite 1 para somar")
-print("Digite 2 para subtrair")
-print("Digite 3 para multiplicar")
-print("Digite 4 para dividir")
+print("""Digite 1 para somar
+Digite 2 para subtrair
+Digite 3 para multiplicar
+Digite 4 para dividir""")
 
 opcao = int(input("Escolha uma opção: "))
 
@@ -36,5 +36,3 @@ elif opcao == 4:
 
 elif opcao > 5 or opcao < 1:
     print("Opção inválida. Por favor, escolha uma opção válida.")
-
-print(" Apenas testando Git Desktop")
