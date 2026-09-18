@@ -1,0 +1,180 @@
+:root {
+  --texto: #1f2328;
+  --texto-suave: #656d76;
+  --fundo: #f6f8fa;
+  --cartao: #fff;
+  --borda: #d0d7de;
+  --primaria: #0b5cad;
+  --perigo: #c62828;
+
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  color: var(--texto);
+  background: var(--fundo);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  margin: 0 0 16px;
+}
+
+h2 {
+  font-size: 1.1rem;
+}
+
+.pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.conteudo {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .conteudo {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formulario,
+section {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.formulario .linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  padding: 8px;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  font: inherit;
+  padding: 8px 14px;
+  border: 1px solid var(--primaria);
+  border-radius: 6px;
+  background: var(--primaria);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+button.secundario {
+  background: #fff;
+  color: var(--primaria);
+}
+
+button.perigo {
+  background: #fff;
+  border-color: var(--perigo);
+  color: var(--perigo);
+}
+
+.acoes,
+.acoes-linha {
+  display: flex;
+  gap: 8px;
+}
+
+.acoes-linha button {
+  padding: 4px 10px;
+}
+
+.tabela-rolagem {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid var(--borda);
+  white-space: nowrap;
+}
+
+th {
+  color: var(--texto-suave);
+  font-weight: 600;
+}
+
+.etiqueta {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  background: #eaeef2;
+}
+
+.status-aberto {
+  background: #ddf4ff;
+  color: #0550ae;
+}
+.status-em_andamento {
+  background: #fff8c5;
+  color: #7d4e00;
+}
+.status-fechado {
+  background: #dafbe1;
+  color: #116329;
+}
+.prioridade-alta {
+  background: #ffebe9;
+  color: var(--perigo);
+}
+
+.vazio {
+  color: var(--texto-suave);
+}
+
+.erro {
+  padding: 10px 14px;
+  border: 1px solid var(--perigo);
+  border-radius: 6px;
+  background: #ffebe9;
+  color: var(--perigo);
+}
