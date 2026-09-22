@@ -1,7 +1,7 @@
-from django.urls import include, path
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('chamados/', views.chamados_list, name='chamados-list'),
-
+    path('chamados/', views.chamados_view, name='chamados-list'),
+    
 ]

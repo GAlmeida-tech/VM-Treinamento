@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 
+
 #@api_view(['GET'])
 #def ola(request):
     #return Response({'mensagem': 'Olá, vaina!'}) """
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('chamados.urls'))
     #path('api/ola/', ola)
-   
 
 ]

@@ -8,9 +8,9 @@
 //   PUT    /api/chamados/<id>/  -> atualiza um chamado, devolve o chamado atualizado
 //   DELETE /api/chamados/<id>/  -> remove um chamado (204, sem corpo)
 
-export type StatusChamado = 'aberto' | 'em_andamento' | 'fechado'
+export type StatusChamado = 'aberto' | 'em andamento' | 'fechado'
 
-export type Prioridade = 'baixa' | 'media' | 'alta'
+export type Prioridade = 'baixa' | 'média' | 'alta'
 
 export interface Chamado {
   id: number

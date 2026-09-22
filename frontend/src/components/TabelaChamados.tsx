@@ -2,13 +2,13 @@ import type { Chamado, Prioridade, StatusChamado } from '../api/chamados'
 
 const ROTULO_STATUS: Record<StatusChamado, string> = {
   aberto: 'Aberto',
-  em_andamento: 'Em andamento',
+  'em andamento'  : 'Em andamento',
   fechado: 'Fechado',
 }
 
 const ROTULO_PRIORIDADE: Record<Prioridade, string> = {
   baixa: 'Baixa',
-  media: 'Média',
+  média: 'Média',
   alta: 'Alta',
 }
 
@@ -33,7 +33,6 @@ export function TabelaChamados({ chamados, onEditar, onExcluir }: Props) {
             <th>Solicitante</th>
             <th>Prioridade</th>
             <th>Status</th>
-            <th>Aberto em</th>
             <th></th>
           </tr>
         </thead>
@@ -53,7 +52,7 @@ export function TabelaChamados({ chamados, onEditar, onExcluir }: Props) {
                   {ROTULO_STATUS[chamado.status]}
                 </span>
               </td>
-              <td>{new Date(chamado.criado_em).toLocaleString('pt-BR')}</td>
+             
               <td className="acoes-linha">
                 <button className="secundario" onClick={() => onEditar(chamado)}>
                   Editar

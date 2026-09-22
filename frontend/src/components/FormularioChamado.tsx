@@ -5,7 +5,7 @@ const VAZIO: DadosChamado = {
   titulo: '',
   descricao: '',
   solicitante: '',
-  prioridade: 'media',
+  prioridade: 'média',
   status: 'aberto',
 }
 
@@ -74,7 +74,7 @@ export function FormularioChamado({ chamadoEmEdicao, salvando, onSalvar, onCance
             onChange={(e) => alterar('prioridade', e.target.value as DadosChamado['prioridade'])}
           >
             <option value="baixa">Baixa</option>
-            <option value="media">Média</option>
+            <option value="média">Média</option>
             <option value="alta">Alta</option>
           </select>
         </label>
@@ -86,7 +86,7 @@ export function FormularioChamado({ chamadoEmEdicao, salvando, onSalvar, onCance
             onChange={(e) => alterar('status', e.target.value as DadosChamado['status'])}
           >
             <option value="aberto">Aberto</option>
-            <option value="em_andamento">Em andamento</option>
+            <option value="em andamento">Em andamento</option>
             <option value="fechado">Fechado</option>
           </select>
         </label>
