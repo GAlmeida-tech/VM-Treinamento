@@ -20,3 +20,25 @@ def chamados_view(request):
             
         else:
             return Response(serializado.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE', 'PUT'])
+def delete_view(request, id):
+    try:
+        chamado = Chamados.objects.get(id=id)
+    except Chamados.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        chamado.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    elif request.method == 'PUT':
+        chamados = Chamados.objects.get(id=id)
+        serializado = Chamados_Serializers(instance=chamados, data=request.data)
+        if serializado.is_valid():
+            serializado.save()
+            return Response(serializado.data)
+        else:
+            return Response(serializado.errors, status=status.HTTP_400_BAD_REQUEST)
+
