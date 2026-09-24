@@ -1,6 +1,5 @@
 // Client HTTP dos chamados.
 //
-// As rotas abaixo AINDA NÃO EXISTEM no Django — criar no backend é o exercício.
 // Contrato que o front espera (padrão de um ModelViewSet do DRF):
 //
 //   GET    /api/chamados/       -> lista de chamados
@@ -8,9 +7,9 @@
 //   PUT    /api/chamados/<id>/  -> atualiza um chamado, devolve o chamado atualizado
 //   DELETE /api/chamados/<id>/  -> remove um chamado (204, sem corpo)
 
-export type StatusChamado = 'aberto' | 'em andamento' | 'fechado'
+export type StatusChamado = 'aberto' | 'em_andamento' | 'fechado'
 
-export type Prioridade = 'baixa' | 'média' | 'alta'
+export type Prioridade = 'baixa' | 'media' | 'alta'
 
 export interface Chamado {
   id: number
@@ -25,12 +24,14 @@ export interface Chamado {
 // O que o formulário envia: o id e a data quem gera é o backend.
 export type DadosChamado = Omit<Chamado, 'id' | 'criado_em'>
 
+
+
 const URL_BASE = '/api/chamados/'
 
 async function requisitar<T>(url: string, opcoes?: RequestInit): Promise<T> {
   const resposta = await fetch(url, {
     ...opcoes,
-    headers: { 'Content-Type': 'application/json', ...opcoes?.headers },
+    headers: { 'Content-Type': 'application/json', 'API-KEY': import.meta.env.VITE_API_KEY, ...opcoes?.headers, },
   })
 
   if (!resposta.ok) {

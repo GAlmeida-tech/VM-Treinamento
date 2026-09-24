@@ -2,13 +2,13 @@ import type { Chamado, Prioridade, StatusChamado } from '../api/chamados'
 
 const ROTULO_STATUS: Record<StatusChamado, string> = {
   aberto: 'Aberto',
-  'em andamento'  : 'Em andamento',
+  em_andamento: 'Em andamento',
   fechado: 'Fechado',
 }
 
 const ROTULO_PRIORIDADE: Record<Prioridade, string> = {
   baixa: 'Baixa',
-  média: 'Média',
+  media: 'Média',
   alta: 'Alta',
 }
 
@@ -28,12 +28,14 @@ export function TabelaChamados({ chamados, onEditar, onExcluir }: Props) {
       <table>
         <thead>
           <tr>
-            <th>#</th>
+            <th>id</th>
             <th>Título</th>
             <th>Solicitante</th>
+            <th>Descrição</th>
             <th>Prioridade</th>
             <th>Status</th>
-            <th></th>
+            <th>Aberto em</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -42,6 +44,7 @@ export function TabelaChamados({ chamados, onEditar, onExcluir }: Props) {
               <td>{chamado.id}</td>
               <td title={chamado.descricao}>{chamado.titulo}</td>
               <td>{chamado.solicitante}</td>
+              <td>{chamado.descricao}</td>
               <td>
                 <span className={`etiqueta prioridade-${chamado.prioridade}`}>
                   {ROTULO_PRIORIDADE[chamado.prioridade]}
@@ -52,7 +55,7 @@ export function TabelaChamados({ chamados, onEditar, onExcluir }: Props) {
                   {ROTULO_STATUS[chamado.status]}
                 </span>
               </td>
-             
+              <td>{new Date(chamado.criado_em).toLocaleString('pt-BR')}</td>
               <td className="acoes-linha">
                 <button className="secundario" onClick={() => onEditar(chamado)}>
                   Editar
