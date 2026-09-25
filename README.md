@@ -47,3 +47,8 @@ Processamento
    
 Saída 
   - O sistema informa se o usuário ou a senha estão incorretos, mostra as tentativas restantes ou exibe a mensagem de boas-vindas quando o login está correto.
+
+
+  # 4. Instruções para preencher o .env
+
+  copie o .env.example para .env e preencha com uma chave aleatória
