@@ -1,49 +1,64 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
-from django.conf import settings
 
-
-
-
-    
-
+dados = {
+    'titulo': 'Impressora do RH',
+    'descricao': 'Luz laranja piscando',
+    'solicitante': 'Maria',
+    'prioridade': 'alta',
+    'status': 'aberto',
+    }
 
 
 class ChamadoApiTests(APITestCase):
-    def setUp(self):
-        self.headers = {'HTTP_API_KEY': settings.API_KEY}
-
-
-    def test_cria_chamado_com_descricao(self):
-        dados = {
-            'titulo': 'Impressora do RH',
-            'descricao': 'Luz laranja piscando',
-            'solicitante': 'Maria',
-            'prioridade': 'alta',
-            'status': 'aberto',
-        }
-
 
 #TESTE DE POST
-        respostaPost = self.client.post('/api/chamados/', dados, format='json', **self.headers)
+    def  test_cria_chamado(self):
 
-        self.assertEqual(respostaPost.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(respostaPost.data['descricao'], 'Luz laranja piscando')
+        resposta_Post = self.client.post('/api/chamados/', dados, format='json')
+
+        self.assertEqual(resposta_Post.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(resposta_Post.data['descricao'], 'Luz laranja piscando')
 
 
 # TESTE DE GET
-        respostaGet = self.client.get('/api/chamados/', dados, format='json', **self.headers)
+    def test_lista_chamados(self):
 
-        
-
-        self.assertEqual(respostaGet.status_code, status.HTTP_200_OK)
-        self.assertEqual(respostaGet.data[0]['titulo'], 'Impressora do RH')
-        self.assertEqual(respostaGet.data[0]['descricao'], 'Luz laranja piscando')
+        resposta_Get = self.client.get('/api/chamados/', dados, format='json')
+        self.assertEqual(resposta_Get.status_code, status.HTTP_200_OK)
 
 
-# TESTE DELETE
-        chamado_id = respostaPost.data['id']
+#TESTE DE PUT
+    def test_edita_chamado(self):
+        chamadoCriado = self.client.post('/api/chamados/', dados, format='json')
+        id_chamado = chamadoCriado.data['id']
 
-        respostaDelete = self.client.delete(f'/api/chamados/{chamado_id}/', **self.headers)
-        self.assertEqual(respostaDelete.status_code, status.HTTP_204_NO_CONTENT)
+        dados['titulo'] = "luizinha da impressora piscando laranja no setor do RH"
 
+        resposta_Put = self.client.put(f'/api/chamados/{id_chamado}/', dados, format='json')
+        self.assertEqual(resposta_Put.status_code, status.HTTP_200_OK)
+        self.assertEqual(resposta_Put.data['titulo'], 'luizinha da impressora piscando laranja no setor do RH')
+
+
+       
+ # TESTE DELETE
+    def test_exclui_chamado(self):
+        chamadoCriado = self.client.post('/api/chamados/', dados, format='json')
+        id_chamado = chamadoCriado.data['id']
+         
+        resposta_Delete = self.client.delete(f'/api/chamados/{id_chamado}/')
+        self.assertEqual(resposta_Delete.status_code, status.HTTP_204_NO_CONTENT) 
+
+
+
+ #TESTE 404
+    def test_chamado_inexistente_retorna_404(self):
+        chamadoCriado = self.client.post('/api/chamados/', dados, format='json')
+        id_chamado = chamadoCriado.data['id']
+         
+        resposta_Delete = self.client.delete(f'/api/chamados/{id_chamado}/')
+
+        resposta_404 = self.client.get(f'/api/chamados/{resposta_Delete}/', format='json')
+        self.assertEqual(resposta_404.status_code, status.HTTP_404_NOT_FOUND)
+
+            

@@ -31,7 +31,7 @@ const URL_BASE = '/api/chamados/'
 async function requisitar<T>(url: string, opcoes?: RequestInit): Promise<T> {
   const resposta = await fetch(url, {
     ...opcoes,
-    headers: { 'Content-Type': 'application/json', 'API-KEY': import.meta.env.VITE_API_KEY, ...opcoes?.headers, },
+    headers: { 'Content-Type': 'application/json', ...opcoes?.headers, },
   })
 
   if (!resposta.ok) {

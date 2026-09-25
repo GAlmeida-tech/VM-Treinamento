@@ -7,20 +7,8 @@ from django.conf import settings
 
 
 
-def verificacao(view_original):
-    def funcao_nova(request, *args, **kwargs):
-        chave_autorizacao = request.headers.get('API-KEY')
-        if chave_autorizacao == settings.API_KEY:
-            return view_original(request, *args, **kwargs)
-        else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-    return funcao_nova
-
-
-
 
 @api_view(['GET', 'POST'])
-@verificacao
 def chamados_view(request):
     if request.method == 'GET':
         chamados = Chamados.objects.all()
@@ -38,7 +26,6 @@ def chamados_view(request):
 
 
 @api_view(['DELETE', 'PUT'])
-@verificacao
 def chamado_detalhe(request, id):
     try:
         chamado = Chamados.objects.get(id=id)

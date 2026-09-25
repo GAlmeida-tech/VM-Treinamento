@@ -35,7 +35,7 @@ export function TabelaChamados({ chamados, onEditar, onExcluir }: Props) {
             <th>Prioridade</th>
             <th>Status</th>
             <th>Aberto em</th>
-            
+            <th></th>
           </tr>
         </thead>
         <tbody>
